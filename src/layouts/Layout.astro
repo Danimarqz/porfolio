@@ -1,6 +1,6 @@
 ---
 import "@fontsource-variable/onest"
-
+import SpeedInsights  from "@vercel/speed-insights/astro"
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 import { ViewTransitions } from "astro:transitions"
@@ -23,6 +23,7 @@ const { description, title } = Astro.props
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <SpeedInsights />
   </head>
 
   <body class="relative text-black dark:text-white">
