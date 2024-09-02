@@ -10,11 +10,12 @@ import Projects from "@/components/Projects.astro"
 import ProjectsWork from "@/components/ProjectsWork.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import Hero from "@/components/Hero.astro"
+import * as m from "../paraglide/messages"
 ---
 
 <Layout
-  title="Porfolio de DaniMarqz - Desarrollador y Programador Web"
-  description="Contrata a DaniMarqz para crear tu aplicación web o móvil. Desarrollador Web con amplia experiencia en bases de datos."
+  title={m.titulo_web()}
+  description={m.descripcion_web()}
 >
   <main class="px-4">
     <SectionContainer class="py-16 md:py-36">
@@ -28,7 +29,7 @@ import Hero from "@/components/Hero.astro"
         class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
       >
         <Briefcase class="size-8" />
-        Experiencia laboral
+        {m.experiencia_laboral()}
       </h2>
       <Experience />
     </SectionContainer>
@@ -38,7 +39,7 @@ import Hero from "@/components/Hero.astro"
         class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
       >
         <CodeIcon class="size-7" />
-        Trabajos
+        {m.trabajos()}
       </h2>
       <ProjectsWork />
     </SectionContainer>
@@ -47,7 +48,7 @@ import Hero from "@/components/Hero.astro"
         class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
       >
         <CodeIcon class="size-7" />
-        Proyectos Personales
+        {m.proyectos_personales()}
       </h2>
       <Projects />
     </SectionContainer>
@@ -57,7 +58,7 @@ import Hero from "@/components/Hero.astro"
         class="flex items-center mb-6 text-3xl font-semibold gap-x-8 text-black/80 dark:text-white"
       >
         <ProfileCheck class="size-8" />
-        Sobre mí
+        {m.about_me()}
       </h2>
       <AboutMe />
     </SectionContainer>

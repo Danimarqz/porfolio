@@ -1,19 +1,20 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
+import * as m from "../paraglide/messages"
 const EXPERIENCIE = [
   {
-    date: "Actualmente...",
-    title: "Consultor TIC",
+    date: m.right_now(),
+    title: m.consultor_tic(),
     company: "BiG Formación",
     description:
-      "Administro y desarrollo múltiples plataformas Moodle, desarrollo sus aplicaciones y he contrubuido con el proyecto BiGtv, Afaga Concept One y BiG Estimula desarrollando / mejorando sus aplicaciones."
+      m.descripcion_big()
   },
   {
-    date: "Actualmente...",
-    title: "Consultor Moodle",
+    date: m.right_now(),
+    title: m.consultor_moodle(),
     company: "Freelance",
     description:
-      "Habilito tu plataforma para dar cursos de FUNDAE añadiendo informes con todos los datos que solicitan. También hago mantenimiento de tus campus (habilitar el cron, habilitar la mensajería, etc.). Además puedo crear aplicaciones personalizadas para que puedas mantener tu imagen de marca.",
+      m.descripcion_consultor_moodle(),
     link: "https://consultoria.danimarqz.dev"
   },
 ]

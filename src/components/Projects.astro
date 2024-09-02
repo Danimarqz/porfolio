@@ -6,6 +6,7 @@ import LinkButton from "./LinkButton.astro"
 import Django from "./icons/Django.astro"
 import React from "./icons/React.astro"
 import Csharp from "./icons/Csharp.astro"
+import * as m from "../paraglide/messages"
 
 const TAGS = {
   DJANGO: {
@@ -31,9 +32,9 @@ const TAGS = {
 }
 const PROJECTS = [
   {
-    title: "MyTasks - A complete Tasks app",
+    title: "MyTasks App",
     description:
-      "Aplicación para guardar notas, con login y crud hacia una base de datos postgres encriptada.",
+      m.mytasks_description(),
     link: "https://mytasks.danimarqz.dev/",
     github: "https://github.com/Danimarqz/myTasks",
     image: "/projects/mytasks.webp",
@@ -42,7 +43,7 @@ const PROJECTS = [
   {
     title: "Amazon Clone",
     description:
-      "Amazon Clone usando Asp.Net Core MVC y Razor Pages. El perfil cliente sólo puede comprar y revisar su carrito y registro de compras. El admin puede crear/modificar/eliminar los productos y revisar todo el historial de transacciones y carritos. Base de Datos Microsoft SQL Server.",
+      m.amazon_description(),
     image: "/projects/amazon.webp",
     github: "https://github.com/Danimarqz/Amazon",
     tags: [TAGS.Csharp]
@@ -83,14 +84,14 @@ const PROJECTS = [
           {github && (
             <LinkButton href={github}>
               <GitHub class="size-6" />
-              Code
+              {m.codigo()}
               
             </LinkButton>
           )}
           {link && (
             <LinkButton href={link}>
               <Link class="size-4" />
-              Preview
+              {m.previsualizar()}
             </LinkButton>
           )}
         </footer>

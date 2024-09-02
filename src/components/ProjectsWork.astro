@@ -5,6 +5,7 @@ import AWS from "./icons/AWS.astro"
 import PlayStore from "./icons/PlayStore.astro"
 import Apple from "./icons/Apple.astro"
 import SASS from "./icons/SASS.astro"
+import * as m from "../paraglide/messages"
 
 const TAGS = {
 
@@ -21,26 +22,26 @@ const TAGS = {
 }
 const PROJECTS = [
   {
-    title: "BiGtv - Video streaming service",
+    title: m.bigtv_title(),
     description:
-      "Servicio de streaming de vídeo. Los vídeos están subidos a un NAS al que se accede mediante un backend hecho en PHP con MySQL. A este backend se accede mediante dos aplicaciones, una hecha para TV y otra hecha para móvil.",
+      m.bigtv_description(),
     link: "https://bigtv.gal",
     image: "/projects/bigtv.webp",
     android: "https://play.google.com/store/apps/details?id=com.bigtv.androidtv",
   },
   {
-    title: "Turismo Valencia - Customized Moodle platform",
+    title: m.turismovalencia_title(),
     description:
-      "Plataforma LMS usando Moodle con sus aplicaciones de Android e iOS customizadas. Hecha a petición del cliente alojada en AWS.",
+      m.turismovalencia_desc(),
     link: "https://turismovalencia.bigformacion.com",
     android: "https://play.google.com/store/apps/details?id=com.turismovalencia.moodlemobile",
     image: "/projects/turismovalencia.webp",
     tags: [TAGS.AWS, TAGS.SASS]
   },
   {
-    title: "CROU - Customized Moodle platform",
+    title: m.crou_titulo(),
     description:
-      "Plataforma LMS usando Moodle con sus aplicaciones de Android e iOS customizadas. Hecha a petición de la diputación de Ourense, alojada en AWS.",
+      m.crou_desc(),
     link: "https://crou.bigformacion.com",
     android: "https://play.google.com/store/apps/details?id=com.crou.mobile",
     ios: "https://apps.apple.com/us/app/crou/id6463857303",
@@ -83,7 +84,7 @@ const PROJECTS = [
           {link && (
             <LinkButton href={link}>
               <Link class="size-4" />
-              Preview
+              {m.previsualizar()}
             </LinkButton>
           )}
           {android && (

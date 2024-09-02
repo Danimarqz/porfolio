@@ -1,25 +1,26 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro"
+import * as m from "../paraglide/messages"
 
 const navItems = [
   {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/#experiencia",
+    title: m.experiencia(),
+    label: m.experiencia_label(),
+    url: m.experiencia_url(),
   },
   {
-    title: "Proyectos",
-    label: "proyectos",
-    url: "/#proyectos",
+    title: m.proyectos(),
+    label: m.proyectos_label(),
+    url: m.proyectos_url(),
   },
   {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/#sobre-mi",
+    title: m.about_me(),
+    label: m.about_me_label(),
+    url: m.about_me_url(),
   },
   {
-    title: "Contacto",
-    label: "contacto",
+    title: m.contacto(),
+    label: m.contacto_label(),
     url: "mailto:danimarquezbouzo@gmail.com",
   },
 ]
