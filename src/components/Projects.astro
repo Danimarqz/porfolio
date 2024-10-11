@@ -5,7 +5,8 @@ import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
 import Django from "./icons/Django.astro"
 import React from "./icons/React.astro"
-import Csharp from "./icons/Csharp.astro"
+import TypeScript from "./icons/TypeScript.astro"
+import Cloudflare from "./icons/Cloudflare.astro"
 
 const TAGS = {
   DJANGO: {
@@ -23,10 +24,15 @@ const TAGS = {
     class: "bg-[#23272f] text-white",
     icon: React,
   },
-  Csharp: {
-    name: "ASP.NET Core MVC",
+  TypeScript: {
+    name: "TypeScript",
     class: "bg-black text-white",
-    icon: Csharp
+    icon: TypeScript
+  },
+  Cloudflare: {
+    name: "Cloudflare",
+    class: "bg-black text-white",
+    icon: Cloudflare
   }
 }
 const PROJECTS = [
@@ -40,12 +46,12 @@ const PROJECTS = [
     tags: [TAGS.DJANGO, TAGS.TAILWIND, TAGS.REACT],
   },
   {
-    title: "Amazon Clone",
+    title: "E-commerce",
     description:
-      "Amazon Clone usando Asp.Net Core MVC y Razor Pages. El perfil cliente sólo puede comprar y revisar su carrito y registro de compras. El admin puede crear/modificar/eliminar los productos y revisar todo el historial de transacciones y carritos. Base de Datos Microsoft SQL Server.",
-    image: "/projects/amazon.webp",
-    github: "https://github.com/Danimarqz/Amazon",
-    tags: [TAGS.Csharp]
+      "Desarrollé una API segura con Hono en Cloudflare Workers, implementando autenticación basada en cookies firmadas (HttpOnly, Secure) y gestión avanzada de CORS. Separé rutas de usuario y administración, restringiendo el acceso según el origen y verificando permisos de administrador desde la base de datos. Configuré cookies compartidas entre dominios (frontend y página de administración), garantizando seguridad y control de acceso en todas las rutas.",
+    image: "/projects/api.png",
+    github: "https://github.com/Danimarqz/animalhada_BE",
+    tags: [TAGS.TypeScript, TAGS.Cloudflare]
   }
 ]
 ---
