@@ -5,8 +5,10 @@ import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
 import Django from "./icons/Django.astro"
 import React from "./icons/React.astro"
-import Csharp from "./icons/Csharp.astro"
-import * as m from "../paraglide/messages"
+import TypeScript from "./icons/TypeScript.astro"
+import Cloudflare from "./icons/Cloudflare.astro"
+import AWS from "./icons/AWS.astro"
+import Flutter from "./icons/Flutter.astro"
 
 const TAGS = {
   DJANGO: {
@@ -24,40 +26,63 @@ const TAGS = {
     class: "bg-[#23272f] text-white",
     icon: React,
   },
-  Csharp: {
-    name: "ASP.NET Core MVC",
+  TypeScript: {
+    name: "TypeScript",
     class: "bg-black text-white",
-    icon: Csharp
+    icon: TypeScript
+  },
+  Cloudflare: {
+    name: "Cloudflare",
+    class: "bg-black text-white",
+    icon: Cloudflare
+  },
+  AWS: {
+    name: "AWS",
+    class: "bg-black text-white",
+    icon: AWS
+  },
+  Flutter: {
+    name: "Flutter",
+    class: "bg-black text-white",
+    icon: Flutter
   }
 }
 const PROJECTS = [
   {
-    title: "MyTasks App",
+    title: "E-commerce",
     description:
-      m.mytasks_description(),
-    link: "https://mytasks.danimarqz.dev/",
+      "Desarrollé una API segura con Hono en Cloudflare Workers, implementando autenticación basada en cookies firmadas (HttpOnly, Secure) y gestión avanzada de CORS. Separé rutas de usuario y administración, restringiendo el acceso según el origen y verificando permisos de administrador desde la base de datos. Configuré cookies compartidas entre dominios (frontend y página de administración), garantizando seguridad y control de acceso en todas las rutas.",
+    image: "/projects/api.png",
+    github: "https://github.com/Danimarqz/animalhada_BE",
+    tags: [TAGS.TypeScript, TAGS.Cloudflare]
+  },
+  {
+    title: "MyTasks - A complete Tasks app",
+    description:
+      "Aplicación para guardar notas, con login y crud hacia una base de datos postgres encriptada.",
     github: "https://github.com/Danimarqz/myTasks",
     image: "/projects/mytasks.webp",
     tags: [TAGS.DJANGO, TAGS.TAILWIND, TAGS.REACT],
   },
   {
-    title: "Amazon Clone",
+    title: "Flutter Personal App",
     description:
-      m.amazon_description(),
-    image: "/projects/amazon.webp",
-    github: "https://github.com/Danimarqz/Amazon",
-    tags: [TAGS.Csharp]
+      "Aplicación móvil usando Flutter para guardar notas, libros leídos, gestión de gastos e inversiones con login y crud hacia supabase.",
+    github: "https://github.com/MyBroder-Me/MyPersonalApp",
+    image: "/projects/flutter.png",
+    tags: [TAGS.Flutter],
   }
+
 ]
 ---
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+    PROJECTS.map(({ image, title, description, tags, github }) => (
     <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
   <div class="w-full md:w-1/2">
     <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Imagen proyecto" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+      <img alt="Imagen proyecto" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="eager" src={image} />
     </div>
   </div>
 
@@ -84,14 +109,8 @@ const PROJECTS = [
           {github && (
             <LinkButton href={github}>
               <GitHub class="size-6" />
-              {m.codigo()}
+              Code
               
-            </LinkButton>
-          )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              {m.previsualizar()}
             </LinkButton>
           )}
         </footer>

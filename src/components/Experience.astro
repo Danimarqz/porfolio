@@ -1,21 +1,27 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
-import * as m from "../paraglide/messages"
 const EXPERIENCIE = [
   {
-    date: m.right_now(),
-    title: m.consultor_tic(),
-    company: "BiG Formación",
+    date: "Actualmente...",
+    title: "Software Developer",
+    company: "Saec Data",
     description:
-      m.descripcion_big()
+      "Desarrollo y configuración de módulos de Odoo usando Python, PostgreSQL, XML y JavaScript. También trabajo en la generación de informes y facturas con Jasper Reports."
   },
   {
-    date: m.right_now(),
-    title: m.consultor_moodle(),
+    date: "Actualmente...",
+    title: "Consultor Moodle",
     company: "Freelance",
     description:
-      m.descripcion_consultor_moodle(),
+      "Habilito tu plataforma para dar cursos de FUNDAE añadiendo informes con todos los datos que solicitan. Además si buscas mantener tu imagen de marca y usar aplicaciones propias con tus logos en lugar de las básicas de Moodle, escríbeme.",
     link: "https://consultoria.danimarqz.dev"
+  },
+  {
+    date: "Agosto 2020 - Septiembre 2024",
+    title: "Consultor TIC",
+    company: "BiG Formación",
+    description:
+      "Administré y desarrollé múltiples plataformas Moodle, desarrollé sus aplicaciones y he contrubuido con el proyecto BiGtv, Afaga Concept One y BiG Estimula."
   },
 ]
 ---

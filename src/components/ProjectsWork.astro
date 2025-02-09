@@ -5,7 +5,7 @@ import AWS from "./icons/AWS.astro"
 import PlayStore from "./icons/PlayStore.astro"
 import Apple from "./icons/Apple.astro"
 import SASS from "./icons/SASS.astro"
-import * as m from "../paraglide/messages"
+import Cloudflare from "./icons/Cloudflare.astro"
 
 const TAGS = {
 
@@ -18,36 +18,40 @@ const TAGS = {
     name: "SASS",
     class: "bg-[#bf4080] text-white",
     icon: SASS
+  },
+  Cloudflare: {
+    name: "Cloudflare",
+    class: "bg-black text-white",
+    icon: Cloudflare
   }
 }
 const PROJECTS = [
   {
-    title: m.bigtv_title(),
-    description:
-      m.bigtv_description(),
-    link: "https://bigtv.gal",
-    image: "/projects/bigtv.webp",
-    android: "https://play.google.com/store/apps/details?id=com.bigtv.androidtv",
+  title: "OpositaTCAE",
+  description: "Diseñé y configuré un servidor en AWS EC2 para Moodle y WordPress, configurando Apache, bases de datos y seguridad. Instalé y configuré plugins como Edwiser Bridge, YITH Subscriptions y StudentQuiz. Implementé la gestión de cookies y políticas de privacidad (RGPD), configuré el servicio SMTP para ambos sistemas y configuré los sistemas de caché buscando el máximo rendimiento. Diseño de la página basada en un prototipo de Figma hecho por el cliente.",
+  image: "/projects/opositatcae.png",
+  link: "https://opositatcae.com/",
+  tags: [TAGS.AWS, TAGS.Cloudflare]
   },
   {
-    title: m.turismovalencia_title(),
+    title: "Turismo Valencia - Customized Moodle platform",
     description:
-      m.turismovalencia_desc(),
+      "Plataforma LMS usando Moodle con sus aplicaciones de Android e iOS customizadas. Hecha a petición del cliente alojada en AWS.",
     link: "https://turismovalencia.bigformacion.com",
     android: "https://play.google.com/store/apps/details?id=com.turismovalencia.moodlemobile",
     image: "/projects/turismovalencia.webp",
     tags: [TAGS.AWS, TAGS.SASS]
   },
   {
-    title: m.crou_titulo(),
+    title: "CROU - Customized Moodle platform",
     description:
-      m.crou_desc(),
+      "Plataforma LMS usando Moodle con sus aplicaciones de Android e iOS customizadas. Hecha a petición de la diputación de Ourense, alojada en AWS.",
     link: "https://crou.bigformacion.com",
     android: "https://play.google.com/store/apps/details?id=com.crou.mobile",
     ios: "https://apps.apple.com/us/app/crou/id6463857303",
     image: "/projects/crou.webp",
     tags: [TAGS.AWS, TAGS.SASS]
-  }
+  },
 ]
 ---
 
@@ -57,7 +61,7 @@ const PROJECTS = [
     <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
   <div class="w-full md:w-1/2">
     <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Imagen proyecto" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+      <img alt="Imagen proyecto" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="eager" src={image} />
     </div>
   </div>
 
@@ -84,7 +88,7 @@ const PROJECTS = [
           {link && (
             <LinkButton href={link}>
               <Link class="size-4" />
-              {m.previsualizar()}
+              Preview
             </LinkButton>
           )}
           {android && (
