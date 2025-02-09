@@ -9,11 +9,8 @@ import Projects from "@/components/Projects.astro";
 import ProjectsWork from "@/components/ProjectsWork.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import Hero from "@/components/Hero.astro";
-import es from "@/i18n/es.json";
-import en from "@/i18n/en.json";
 
-let lang = "en"; // Idioma predeterminado
-const m = lang === "es" ? es : en;
+let m: TranslationMessages = {} as TranslationMessages
 ---
 
 <Layout title={m.titulo_web} description={m.descripcion_web} m={m}>
@@ -61,9 +58,7 @@ const m = lang === "es" ? es : en;
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const lang = localStorage.getItem("lang") || "en";
-    console.log(lang);
-    if (lang !== "en") {
-      fetch(`/src/i18n/${lang}.json`)
+      fetch(`/lang/${lang}.json`)
         .then(response => response.json())
         .then(messages => {
           console.log(messages);
@@ -76,5 +71,5 @@ const m = lang === "es" ? es : en;
           });
         });
     }
-  });
+  );
 </script>
