@@ -1,7 +1,8 @@
 ---
 import SunIcon from "./icons/Sun.astro"
 import MoonIcon from "./icons/Moon.astro"
-import * as m from "../paraglide/messages"
+
+const {m} = Astro.props
 
 const THEMES = ["Light", "Dark"]
 ---
@@ -11,7 +12,7 @@ const THEMES = ["Light", "Dark"]
     id="theme-toggle-btn"
     class="appearance-none border-none flex hover:scale-125 transition"
   >
-    <span class="sr-only">{m.elige_tema()}</span>
+    <span class="sr-only">{m.elige_tema}</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
     <MoonIcon
       id="dark"

@@ -1,28 +1,24 @@
 ---
  const personalImageAlt = "Daniel Márquez"
+ const {m} = Astro.props
 ---
 
 <article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
   <div
     class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
   >
-    <p>
-      Me llamo Daniel Márquez, comencé mi camino en la programación hace tres años, 
-      impulsado por la curiosidad por las plataformas Moodle que gestionaba. Desde entonces,<strong
-        > he desarrollado diversas plataformas web personalizadas y sus respectivas aplicaciones para Android e iOS.
-
-</strong
-      >
+    <p> <span data-i18n="intro_1">
+      {m.intro_1}</span><strong data-i18n="intro_1_5">{m.intro_1_5}</strong>
     </p>
 
-    <p>
-      Actualmente, trabajo con <strong>Odoo</strong>, ayudando a empresas a optimizar sus procesos mediante soluciones personalizadas
+    <p data-i18n="intro_2">
+      {m.intro_2}
     </p>
 
-    <p>
-      En mi tiempo libre, estoy desarrollando una aplicación con <strong>Flutter</strong> y aprendiendo sobre<strong
-        > DevOps</strong
-      > para mejorar mis conocimientos y habilidades en la gestión de infraestructuras y procesos de automatización.
+    <p> <span data-i18n="intro_3">
+      {m.intro_3}</span>
+      <strong data-i18n="intro_3_1">{m.intro_3_1}</strong>
+      <span data-i18n="intro_3_2">{m.intro_3_2}</span>
     </p>
   </div>
 

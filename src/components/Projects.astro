@@ -1,7 +1,6 @@
 ---
 import GitHub from "./icons/GitHub.astro"
 import Tailwind from "./icons/Tailwind.astro"
-import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
 import Django from "./icons/Django.astro"
 import React from "./icons/React.astro"
@@ -9,7 +8,7 @@ import TypeScript from "./icons/TypeScript.astro"
 import Cloudflare from "./icons/Cloudflare.astro"
 import AWS from "./icons/AWS.astro"
 import Flutter from "./icons/Flutter.astro"
-
+const {m} = Astro.props
 const TAGS = {
   DJANGO: {
     name: "Django",
@@ -49,25 +48,28 @@ const TAGS = {
 }
 const PROJECTS = [
   {
+    id: 'ecommerce',
     title: "E-commerce",
     description:
-      "Desarrollé una API segura con Hono en Cloudflare Workers, implementando autenticación basada en cookies firmadas (HttpOnly, Secure) y gestión avanzada de CORS. Separé rutas de usuario y administración, restringiendo el acceso según el origen y verificando permisos de administrador desde la base de datos. Configuré cookies compartidas entre dominios (frontend y página de administración), garantizando seguridad y control de acceso en todas las rutas.",
+      m.ecommerce,
     image: "/projects/api.png",
     github: "https://github.com/Danimarqz/animalhada_BE",
     tags: [TAGS.TypeScript, TAGS.Cloudflare]
   },
   {
+    id: 'mytasks',
     title: "MyTasks - A complete Tasks app",
     description:
-      "Aplicación para guardar notas, con login y crud hacia una base de datos postgres encriptada.",
+      m.mytasks,
     github: "https://github.com/Danimarqz/myTasks",
     image: "/projects/mytasks.webp",
     tags: [TAGS.DJANGO, TAGS.TAILWIND, TAGS.REACT],
   },
   {
+    id: 'flutter',
     title: "Flutter Personal App",
     description:
-      "Aplicación móvil usando Flutter para guardar notas, libros leídos, gestión de gastos e inversiones con login y crud hacia supabase.",
+      m.flutter,
     github: "https://github.com/MyBroder-Me/MyPersonalApp",
     image: "/projects/flutter.png",
     tags: [TAGS.Flutter],
@@ -78,7 +80,7 @@ const PROJECTS = [
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, tags, github }) => (
+    PROJECTS.map(({ id, image, title, description, tags, github }) => (
     <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
   <div class="w-full md:w-1/2">
     <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
@@ -104,7 +106,7 @@ const PROJECTS = [
           ))}
         </ul>
 
-      <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
+      <div class="mt-2 text-gray-700 dark:text-gray-400" data-i18n={`${id}`}>{description}</div>
       <footer class="flex items-end justify-start mt-4 gap-x-4">
           {github && (
             <LinkButton href={github}>

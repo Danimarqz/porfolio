@@ -1,9 +1,10 @@
 ---
-const personalImageAlt = "Daniel Márquez"
-import Badge from "@/components/Badge.astro"
-import LinkedInIcon from "@/components/icons/LinkedIn.astro"
-import MailIcon from "@/components/icons/Mail.astro"
-import SocialPill from "@/components/SocialPill.astro"
+const { m } = Astro.props;
+const personalImageAlt = "Daniel Márquez";
+import Badge from "@/components/Badge.astro";
+import LinkedInIcon from "@/components/icons/LinkedIn.astro";
+import MailIcon from "@/components/icons/Mail.astro";
+import SocialPill from "@/components/SocialPill.astro";
 ---
 
 <div class="max-w-xl">
@@ -19,28 +20,28 @@ import SocialPill from "@/components/SocialPill.astro"
       rel="noopener"
       class="flex items-center transition md:justify-center md:hover:scale-105"
     >
-      <Badge>Disponible para trabajar</Badge>
+      <Badge>
+        <span data-i18n="disponible_trabajar">{m.disponible_trabajar}</span>
+      </Badge>
     </a>
   </div>
   <h1
     class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
+    data-i18n="hola"
   >
-    Hey, soy DaniMarqz
+    {m.hola}
   </h1>
   <p
     class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
   >
-    <strong
-      >Desarrollador de Aplicaciones Web</strong
-    > de España 🇪🇸. <br>Me especializo en resolver problemas complejos en el desarrollo de software. <br>Actualmente trabajo con Odoo ERP, 
-    ayudando a empresas a optimizar sus procesos con soluciones personalizadas.
+    <strong data-i18n="web_developer">{m.web_developer}</strong> <span data-i18n="from">{m.from}</span>
   </p>
   <nav class="flex flex-wrap gap-4 mt-8">
     <SocialPill href="mailto:danimarquezbouzo@gmail.com">
       <MailIcon class="size-4" />
-      Contáctame
+      <span data-i18n="contacto">{m.contacto}</span>
     </SocialPill>
-    <SocialPill href="https://linkedin.com/in/danimarqz">
+        <SocialPill href="https://linkedin.com/in/danimarqz">
       <LinkedInIcon class="size-4" />
       LinkedIn
     </SocialPill>

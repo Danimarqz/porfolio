@@ -1,27 +1,28 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
+const { m } = Astro.props
 const EXPERIENCIE = [
   {
-    date: "Actualmente...",
+    id: "saec_data",
+    date: m.right_now,
     title: "Software Developer",
     company: "Saec Data",
-    description:
-      "Desarrollo y configuración de módulos de Odoo usando Python, PostgreSQL, XML y JavaScript. También trabajo en la generación de informes y facturas con Jasper Reports."
+    description: m.description_saec_data,
   },
   {
-    date: "Actualmente...",
-    title: "Consultor Moodle",
+    id: "freelance",
+    date: m.right_now,
+    title: m.title_freelance,
     company: "Freelance",
-    description:
-      "Habilito tu plataforma para dar cursos de FUNDAE añadiendo informes con todos los datos que solicitan. Además si buscas mantener tu imagen de marca y usar aplicaciones propias con tus logos en lugar de las básicas de Moodle, escríbeme.",
+    description: m.description_freelance,
     link: "https://consultoria.danimarqz.dev"
   },
   {
-    date: "Agosto 2020 - Septiembre 2024",
-    title: "Consultor TIC",
+    id: "big_formacion",
+    date: "08/2020 - 09/2024",
+    title: m.title_big_formacion,
     company: "BiG Formación",
-    description:
-      "Administré y desarrollé múltiples plataformas Moodle, desarrollé sus aplicaciones y he contrubuido con el proyecto BiGtv, Afaga Concept One y BiG Estimula."
+    description: m.description_big_formacion
   },
 ]
 ---
@@ -30,7 +31,7 @@ const EXPERIENCIE = [
   {
     EXPERIENCIE.map((experiencie) => (
       <li class="">
-        <ExperienceItem {...experiencie} />
+        <ExperienceItem key={experiencie.id} {...experiencie} m={m} />
       </li>
     ))
   }

@@ -2,14 +2,17 @@
 import LinkInline from "./LinkInline.astro"
 
 interface Props {
+  id: string
   title: string
   company: string
   description: string
   link?: string
   date: string
+  m: object
+  key: string
 }
 
-const { title, company, description, link, date } = Astro.props
+const { id, title, company, description, link, date, m } = Astro.props
 ---
 
 <div
@@ -21,18 +24,19 @@ const { title, company, description, link, date } = Astro.props
         >&bull;</span
       >
 
-      <h3 class="text-xl font-bold text-yellow-400">{title}</h3>
-      <h4 class="font-semibold text-xl text-gray-600 dark:text-white">{company}</h4>
-      <time class="p-0 m-0 text-sm text-gray-600/80 dark:text-white/80">{date}</time>
+      <h3 class="text-xl font-bold text-yellow-400" data-i18n={`title_${id}`}>{title}</h3>
+      <h4 class="font-semibold text-xl text-gray-600 dark:text-white" data-i18n={`company_${id}`}>{company}</h4>
+      <time class="p-0 m-0 text-sm text-gray-600/80 dark:text-white/80" data-i18n={`date_${id}`}>{date}</time>
     </div>
   </div>
   <div class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3">
-    {description}
+    <span data-i18n={`description_${id}`}>
+      {description}
+    </span>
     {
       link && (
         <LinkInline href={link}>
-          Saber más{" "}
-          <svg
+          <span data-i18n={`more_info_${id}`}>{m[`more_info_${id}`]}</span>{" "}          <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-5 icon icon-tabler icon-tabler-chevron-right"
             width="24"
@@ -44,10 +48,8 @@ const { title, company, description, link, date } = Astro.props
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M9 6l6 6l-6 6" />
-            </>
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 6l6 6l-6 6" />
           </svg>
         </LinkInline>
       )

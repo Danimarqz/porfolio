@@ -1,21 +1,21 @@
 ---
-import "@fontsource-variable/onest"
-import SpeedInsights  from "@vercel/speed-insights/astro"
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro"
-import { ViewTransitions } from "astro:transitions"
+import "@fontsource-variable/onest";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
-  title: string
-  description: string
+  title: string;
+  description: string;
+  m: object;
 }
 
-const { description, title } = Astro.props
-console.log(Astro.currentLocale)
+const { description, title, m } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale} >
+<html lang={Astro.currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -35,9 +35,9 @@ console.log(Astro.currentLocale)
       dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
     </div>
-    <Header />
+    <Header m={m} />
     <slot />
-    <Footer />
+    <Footer m={m} />
     <style is:global>
       :root {
         color-scheme: light dark;
