@@ -4,16 +4,16 @@ const { m } = Astro.props
 const EXPERIENCIE = [
   {
     id: "saec_data",
-    date: m.right_now,
-    title: "Software Developer",
-    company: "Saec Data",
+    date: "At the moment...",
+    title: m.title_saec_data,
+    company: m.company_saec_data,
     description: m.description_saec_data,
   },
   {
     id: "freelance",
-    date: m.right_now,
+    date: "At the moment...",
     title: m.title_freelance,
-    company: "Freelance",
+    company: m.company_freelance,
     description: m.description_freelance,
     link: "https://consultoria.danimarqz.dev"
   },
@@ -21,7 +21,7 @@ const EXPERIENCIE = [
     id: "big_formacion",
     date: "08/2020 - 09/2024",
     title: m.title_big_formacion,
-    company: "BiG Formación",
+    company: m.company_big_formacion,
     description: m.description_big_formacion
   },
 ]
@@ -30,8 +30,8 @@ const EXPERIENCIE = [
 <ol class="relative mt-16">
   {
     EXPERIENCIE.map((experiencie) => (
-      <li class="">
-        <ExperienceItem key={experiencie.id} {...experiencie} m={m} />
+      <li class="" >
+        <ExperienceItem {...experiencie} m={m} />
       </li>
     ))
   }
