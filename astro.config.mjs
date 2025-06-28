@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config'
 import tailwind from "@astrojs/tailwind"
-import vercel from '@astrojs/vercel/static'
+import vercel from '@astrojs/vercel'
 import robotsTxt from "astro-robots-txt"
 
 // https://astro.build/config
@@ -9,14 +9,6 @@ export default defineConfig({
     tailwind(),
     robotsTxt(),
   ],
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'es'],
-    tranlsations: {
-      en: './src/i18n/en.json',
-      es: './src/i18n/es.json'
-    }
-  },
   site: 'https://danimarqz.dev/',
   output: 'static',
   adapter: vercel({

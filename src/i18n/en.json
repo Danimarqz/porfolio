@@ -39,5 +39,21 @@
     "trabajos": "Jobs",
     "proyectos_personales": "Personal Projects",
     "titulo_web": "DaniMarqz's Portfolio - Web Developer and Programmer",
-    "descripcion_web": "Hire DaniMarqz to create your web or mobile application. Web developer with extensive experience in databases."
+    "descripcion_web": "Hire DaniMarqz to create your web or mobile application. Web developer with extensive experience in databases.",
+    "title_SDE": "Software Developer",
+    "company_saec_data": "Saec Data",
+    "description_saec_data": "Development and configuration of Odoo modules using Python, PostgreSQL, XML, and JavaScript. I also work on generating reports and invoices with Jasper Reports.",
+    "company_freelance": "Freelance",
+    "description_freelance": "I enable your platform to offer FUNDAE courses by adding reports with all the required data. If you want to maintain your brand image and use custom applications with your own logos instead of Moodle's default ones, contact me.",
+    "title_big_formacion": "ICT Consultant",
+    "company_big_formacion": "Big Formación",
+    "description_big_formacion": "I managed and developed multiple Moodle platforms, developed their applications, and contributed to the BiGtv, Afaga Concept One",
+    "knowmore": "Know more",
+    "opositatcae_desc": "I designed and configured a server on AWS EC2 for Moodle and WordPress, configuring Apache, databases, and security. I installed and configured plugins such as Edwiser Bridge, YITH Subscriptions, and StudentQuiz. I implemented cookie management and privacy policies (GDPR), configured the SMTP service for both systems, and set up caching systems for maximum performance. The page design is based on a Figma prototype made by the client.",
+    "ecommerce": "I developed a secure API with Hono on Cloudflare Workers, implementing authentication based on signed cookies (HttpOnly, Secure) and advanced CORS management. I separated user and admin routes, restricting access based on origin and verifying admin permissions from the database. I configured shared cookies between domains (frontend and admin page), ensuring security and access control on all routes.",
+    "mytasks": "Application to save notes, with login and backend with crud to an encrypted postgres database.",
+    "flutter": "Mobile application using Flutter to save notes, books read, manage expenses and investments with login and crud to supabase.",
+    "quizreport": "Moodle plugin that triggers a Python service for live quiz data analysis and visualization.",
+    "quiz_analysis": "Python service for live quiz data analysis and visualization.",
+    "quiz_percentile": "Moodle plugin that displays student percentiles in quiz reports to aid comparative performance analysis."
 }

@@ -35,7 +35,7 @@ const { id, title, company, description, link, date, m } = Astro.props
     {
       link && (
         <LinkInline href={link}>
-          <span data-i18n={`more_info_${id}`}>{m[`more_info_${id}`]}</span>{" "}
+          <span data-i18n={`more_info_${id}`}>{m.knowmore}</span>{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-5 icon icon-tabler icon-tabler-chevron-right"

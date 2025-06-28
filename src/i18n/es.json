@@ -39,5 +39,21 @@
     "trabajos": "Trabajos",
     "proyectos_personales": "Proyectos Personales",
     "titulo_web": "Porfolio de DaniMarqz - Desarrollador y Programador Web",
-    "descripcion_web": "Contrata a DaniMarqz para crear tu aplicación web o móvil. Desarrollador Web con amplia experiencia en bases de datos."
+    "descripcion_web": "Contrata a DaniMarqz para crear tu aplicación web o móvil. Desarrollador Web con amplia experiencia en bases de datos.",
+    "title_SDE": "Software Developer",
+    "company_saec_data": "Saec Data",
+    "description_saec_data": "Desarrollo y configuración de módulos de Odoo usando Python, PostgreSQL, XML y JavaScript. También trabajo en la generación de informes y facturas con Jasper Reports.",
+    "company_freelance": "Freelance",
+    "description_freelance": "Habilito tu plataforma para dar cursos de FUNDAE añadiendo informes con todos los datos que solicitan. Además si buscas mantener tu imagen de marca y usar aplicaciones propias con tus logos en lugar de las básicas de Moodle, escríbeme.",
+    "title_big_formacion": "Consultor TIC",
+    "company_big_formacion": "Big Formación",
+    "description_big_formacion": "Administré y desarrollé múltiples plataformas Moodle, desarrollé sus aplicaciones y he contrubuido con el proyecto BiGtv, Afaga Concept One y BiG Estimula.",
+    "knowmore": "Saber más",
+    "opositatcae_desc": "Diseñé y configuré un servidor en AWS EC2 para Moodle y WordPress, configurando Apache, bases de datos y seguridad. Instalé y configuré plugins como Edwiser Bridge, YITH Subscriptions y StudentQuiz. Implementé la gestión de cookies y políticas de privacidad (RGPD), configuré el servicio SMTP para ambos sistemas y configuré los sistemas de caché buscando el máximo rendimiento. Diseño de la página basada en un prototipo de Figma hecho por el cliente.",
+    "ecommerce": "Desarrollé una API segura con Hono en Cloudflare Workers, implementando autenticación basada en cookies firmadas (HttpOnly, Secure) y gestión avanzada de CORS. Separé rutas de usuario y administración, restringiendo el acceso según el origen y verificando permisos de administrador desde la base de datos. Configuré cookies compartidas entre dominios (frontend y página de administración), garantizando seguridad y control de acceso en todas las rutas.",
+    "mytasks": "Aplicación para guardar notas, con login y backend con crud hacia una base de datos postgres encriptada.",
+    "flutter": "Aplicación móvil usando Flutter para guardar notas, libros leídos, gestión de gastos e inversiones con login y crud hacia supabase.",
+    "quizreport": "Plugin de Moodle que dispara un servicio en Python para análisis y visualización de datos de cuestionarios en tiempo real.",
+    "quiz_analysis": "Servicio en Python para análisis y visualización de datos de cuestionarios en tiempo real.",
+    "quiz_percentile": "Plugin de Moodle que muestra los percentiles de los estudiantes en los informes de cuestionarios para ayudar en el análisis comparativo del rendimiento."
 }

@@ -8,6 +8,10 @@ import TypeScript from "./icons/TypeScript.astro"
 import Cloudflare from "./icons/Cloudflare.astro"
 import AWS from "./icons/AWS.astro"
 import Flutter from "./icons/Flutter.astro"
+import php from "./icons/php.astro"
+import Python from "./icons/Python.astro"
+import SQL from "./icons/SQL.astro"
+
 const {m} = Astro.props
 const TAGS = {
   DJANGO: {
@@ -44,6 +48,21 @@ const TAGS = {
     name: "Flutter",
     class: "bg-black text-white",
     icon: Flutter
+  },
+  PHP: {
+    name: "Php",
+    class: "bg-black text-white",
+    icon: php
+  },
+  Python: {
+    name: "Python",
+    class: "bg-black text-white",
+    icon: Python
+  },
+  SQL: {
+    name: "",
+    class: "bg-black text-white",
+    icon: SQL
   }
 }
 const PROJECTS = [
@@ -73,6 +92,33 @@ const PROJECTS = [
     github: "https://github.com/MyBroder-Me/MyPersonalApp",
     image: "/projects/flutter.png",
     tags: [TAGS.Flutter],
+  },
+  {
+    id: 'quizreport',
+    title: "Quizreport",
+    description: 
+      m.quizreport,
+    image: "/projects/quizreport.png",
+    github: "https://github.com/Danimarqz/quiz-analysis",
+    tags: [TAGS.PHP]
+  },
+  {
+    id: 'quiz-analysis',
+    title: "Quiz-analysis",
+    description: 
+      m.quiz_analysis,
+    image: "/projects/quizanalysis.png",
+    github: "https://github.com/Danimarqz/quizreport",
+    tags: [TAGS.Python, TAGS.SQL]
+  },
+  {
+    id: 'quiz_percentile',
+    title: "Quiz Percentile",
+    description: 
+      m.quiz_percentile,
+    image: "/projects/quizpercentile.png",
+    github: "https://github.com/MyBroder-Me/quiz_percentile",
+    tags: [TAGS.PHP]
   }
 
 ]
