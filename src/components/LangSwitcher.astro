@@ -1,11 +1,15 @@
 ---
 const { m } = Astro.props;
-const LANGUAGES = ["English", "Español"];
+const LANGUAGES = [
+  { name: "English", code: "en", path: "/" },
+  { name: "Español", code: "es", path: "/es/" }
+];
 ---
 <div class="relative ml-1 mr-1">
   <button
     id="lang-toggle-btn"
     class="appearance-none border-none flex hover:scale-125 transition"
+    type="button"
   >
     <span class="sr-only">{m.elige_idioma}</span>
     <span id="lang-icon" class="size-5 transition-all">
@@ -19,8 +23,12 @@ const LANGUAGES = ["English", "Español"];
   >
     <ul>
       {LANGUAGES.map((language) => (
-        <li class="langs-menu-option px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm" data-lang={language.toLowerCase()}>
-          {language}
+        <li
+          class="langs-menu-option px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
+          data-lang={language.code}
+          data-path={language.path}
+        >
+          {language.name}
         </li>
       ))}
     </ul>
@@ -38,7 +46,6 @@ const LANGUAGES = ["English", "Español"];
       transform: scale(0.8);
       opacity: 0;
     }
-
     to {
       transform: scale(1);
       opacity: 1;
@@ -52,7 +59,7 @@ const LANGUAGES = ["English", "Español"];
   const langIcon = document.getElementById("lang-icon");
 
   const getLangPreference = () => {
-    return localStorage.getItem("lang") ?? "en";
+    return localStorage.getItem("lang") ?? (window.location.pathname.startsWith("/es") ? "es" : "en");
   };
 
   const updateLang = () => {
@@ -71,10 +78,11 @@ const LANGUAGES = ["English", "Español"];
 
   document.querySelectorAll(".langs-menu-option").forEach((element) => {
     element.addEventListener("click", (e) => {
-      const selectedLang = e.target.getAttribute("data-lang") == 'español'? 'es' : 'en';
+      const selectedLang = e.target.getAttribute("data-lang");
+      const path = e.target.getAttribute("data-path");
       localStorage.setItem("lang", selectedLang);
       updateLang();
-      location.reload(); // Recarga la página para aplicar el nuevo idioma
+      window.location.pathname = path;
     });
   });
 </script>
