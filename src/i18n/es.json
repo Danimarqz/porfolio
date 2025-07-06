@@ -1,8 +1,8 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
-    "intro_1": "Me llamo Daniel Márquez, empecé en la\r\n      programación hace tres años por la intriga que me daban las plataformas Moodle que gestionaba. Actualmente, <strong\r\n        >desarrollo dichas plataformas personalizadas, creo sus aplicaciones y me dedico a crear todo tipo de aplicaciones web</strong\r\n      >.",
-    "intro_2": "Algunos de mis éxitos incluyen <strong\r\n        >el desarrollo de mi primera plataforma completa CROU con su aplicación para Android e iOS</strong\r\n      >. Con énfasis en la seguridad y velocidad para los usuarios. Completamente personalizada según las peticiones de la Diputación de Ourense.",
-    "intro_3": "Actualmente, estoy especializándome en  <strong\r\n        >C# usando ASP.NET </strong\r\n      >. Pero estoy abierto a todo tipo de lenguajes y frameworks.",
+    "intro_1": "Me llamo Daniel Márquez, empecé en la\r\n      programación hace tres años por la intriga que me daban las plataformas Moodle que gestionaba. Actualmente, \r\n        desarrollo dichas plataformas personalizadas, creo sus aplicaciones y me dedico a crear todo tipo de aplicaciones web\r\n      .",
+    "intro_2": "Algunos de mis éxitos incluyen \r\n        el desarrollo de mi primera plataforma completa CROU con su aplicación para Android e iOS\r\n. Con énfasis en la seguridad y velocidad para los usuarios. Completamente personalizada según las peticiones de la Diputación de Ourense.",
+    "intro_3": "Actualmente, estoy especializándome en  \r\n       Python \r\n      . Pero estoy abierto a todo tipo de lenguajes y frameworks. Visita mi blog para ver mis últimos proyectos. https://consultoria.danimarqz.dev/blog/",
     "right_now": "Actualmente...",
     "consultor_tic": "Consultor TIC",
     "descripcion_big": "Administro y desarrollo múltiples plataformas Moodle, desarrollo sus aplicaciones y he contrubuido con el proyecto BiGtv, Afaga Concept One y BiG Estimula desarrollando / mejorando sus aplicaciones.",

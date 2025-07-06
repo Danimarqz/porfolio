@@ -1,8 +1,8 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
-    "intro_1": "My name is Daniel Márquez, I started programming three years ago because of the intrigue that the Moodle platforms I managed gave me. Currently, <strong&gt;I develop these custom platforms, create their applications and I am dedicated to creating all kinds of web applications </strong&gt;.",
-    "intro_2": "Some of my successes include <strong\r\n&gt;the development of my first complete platform CROU with its application for Android and iOS </strong\r\n&gt;. With an emphasis on security and speed for users. Completely customized according to the requests of the Ourense Provincial Council.",
-    "intro_3": "Currently, I am specializing in <strong\r\n&gt;C# using ASP.NET </strong\r\n&gt;. But I'm open to all kinds of languages and frameworks.",
+    "intro_1": "My name is Daniel Márquez, I started programming three years ago because of the intrigue that the Moodle platforms I managed gave me. Currently, I develop these custom platforms, create their applications and I am dedicated to creating all kinds of web applications .",
+    "intro_2": "Some of my successes include <strong\r\nthe development of my first complete platform CROU with its application for Android and iOS \r\n. With an emphasis on security and speed for users. Completely customized according to the requests of the Ourense Provincial Council.",
+    "intro_3": "Currently, I am specializing in <strong\r\nC# using ASP.NET \r\n. But I'm open to all kinds of languages and frameworks.",
     "right_now": "At the moment...",
     "consultor_tic": "ICT Consultant",
     "descripcion_big": "I manage and develop multiple Moodle platforms, develop their applications and have contributed to the BiGtv, Afaga Concept One and BiG Stimula projects by developing / improving their applications.",
