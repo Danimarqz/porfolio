@@ -2,32 +2,50 @@
 import SunIcon from "./icons/Sun.astro"
 import MoonIcon from "./icons/Moon.astro"
 
-const {m} = Astro.props
+const { m } = Astro.props
 
-const THEMES = ["Light", "Dark"]
+const THEMES = [
+  { label: "Light", value: "light" },
+  { label: "Dark", value: "dark" },
+]
+const DEFAULT_THEME = "dark"
+const DEFAULT_THEME_LABEL = THEMES.find((theme) => theme.value === DEFAULT_THEME)?.label ?? "Dark"
 ---
 
 <div class="relative ml-1 mr-1">
   <button
     id="theme-toggle-btn"
     class="appearance-none border-none flex hover:scale-125 transition"
+    type="button"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-label={`${m.elige_tema}: ${DEFAULT_THEME_LABEL}`}
   >
     <span class="sr-only">{m.elige_tema}</span>
-    <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
+    <SunIcon
+      data-theme="light"
+      class={`theme-toggle-icon size-5 transition-all ${DEFAULT_THEME === "dark" ? "scale-0 opacity-0" : ""}`}
+    />
     <MoonIcon
-      id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all"
+      data-theme="dark"
+      class={`theme-toggle-icon absolute size-5 transition-all ${DEFAULT_THEME === "dark" ? "" : "scale-0 opacity-0"}`}
     />
   </button>
   <div
     id="themes-menu"
     class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
   >
-    <ul>
+    <ul role="listbox" aria-label={m.elige_tema}>
       {
         THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
-            {theme}
+          <li
+            role="option"
+            tabindex={0}
+            class="themes-menu-option px-2 py-1.5 cursor-pointer rounded-sm hover:bg-neutral-400/40 dark:hover:bg-gray-500/50"
+            data-theme={theme.value}
+            aria-selected={theme.value === DEFAULT_THEME ? "true" : "false"}
+          >
+            {theme.label}
           </li>
         ))
       }
@@ -39,6 +57,15 @@ const THEMES = ["Light", "Dark"]
   #themes-menu.open {
     display: inline;
     animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  .themes-menu-option[aria-selected="true"] {
+    background: rgba(156, 163, 175, 0.25);
+    font-weight: 600;
+  }
+
+  :where(.dark) .themes-menu-option[aria-selected="true"] {
+    background: rgba(107, 114, 128, 0.35);
   }
 
   @keyframes scale-up-center {
@@ -55,58 +82,93 @@ const THEMES = ["Light", "Dark"]
 </style>
 
 <script is:inline>
-  let remove = null
-  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
-  const themesMenu = document.getElementById("themes-menu")
+  const DEFAULT_THEME = 'dark'
+  const root = document.documentElement
+  const themesMenu = document.getElementById('themes-menu')
+  const themeToggleBtn = document.getElementById('theme-toggle-btn')
+  const themeOptions = Array.from(document.querySelectorAll('.themes-menu-option'))
+  const themeIcons = Array.from(document.querySelectorAll('.theme-toggle-icon'))
 
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined") {
-      return localStorage.getItem("theme") ?? "system"
+  const getStoredTheme = () => localStorage.getItem('theme')
+  const setStoredTheme = (theme) => localStorage.setItem('theme', theme)
+
+  const ensureInitialClass = () => {
+    const stored = getStoredTheme()
+    if (stored === 'light') {
+      root.classList.remove('dark')
+    } else {
+      root.classList.add('dark')
     }
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light"
   }
 
-  const updateIcon = (themePreference) => {
-    document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
-      element.style.scale = element.id === themePreference ? "1" : "0"
+  const setMenuState = (isOpen) => {
+    themesMenu.classList.toggle('open', isOpen)
+    themeToggleBtn?.setAttribute('aria-expanded', String(isOpen))
+  }
+
+  const applyTheme = (theme) => {
+    const normalizedTheme = theme === 'light' ? 'light' : 'dark'
+
+    root.classList.toggle('dark', normalizedTheme === 'dark')
+
+    themeIcons.forEach((icon) => {
+      const isActive = icon.dataset.theme === normalizedTheme
+      icon.classList.toggle('opacity-0', !isActive)
+      icon.classList.toggle('scale-0', !isActive)
     })
+
+    themeOptions.forEach((option) => {
+      const isActive = option.dataset.theme === normalizedTheme
+      option.setAttribute('aria-selected', isActive ? 'true' : 'false')
+      option.classList.toggle('font-semibold', isActive)
+    })
+
+    const activeLabel = themeOptions.find((option) => option.dataset.theme === normalizedTheme)?.textContent?.trim()
+    if (activeLabel && themeToggleBtn) {
+      themeToggleBtn.setAttribute('aria-label', `${activeLabel} theme`)
+    }
+
+    return normalizedTheme
   }
 
-  const updateTheme = () => {
-    if (remove != null) {
-      remove()
-    }
-    matchMedia.addEventListener("change", updateTheme)
-    remove = () => {
-      matchMedia.removeEventListener("change", updateTheme)
-    }
-
-    const themePreference = getThemePreference()
-    const isDark =
-      themePreference === "dark" ||
-      (themePreference === "system" && matchMedia.matches)
-
-    updateIcon(themePreference)
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+  const initTheme = () => {
+    ensureInitialClass()
+    const storedTheme = getStoredTheme()
+    const initialTheme = storedTheme === 'light' ? 'light' : DEFAULT_THEME
+    setStoredTheme(initialTheme)
+    applyTheme(initialTheme)
   }
 
-  updateTheme()
+  initTheme()
 
-  document.addEventListener("click", () => themesMenu.classList.remove("open"))
-
-  document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
-    e.stopPropagation()
-    const isClosed = !themesMenu.classList.contains("open")
-    themesMenu.classList[isClosed ? "add" : "remove"]("open")
+  document.addEventListener('click', () => setMenuState(false))
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setMenuState(false)
+    }
   })
 
-  document.querySelectorAll(".themes-menu-option").forEach((element) => {
-    element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
-      updateTheme()
+  themeToggleBtn?.addEventListener('click', (event) => {
+    event.stopPropagation()
+    setMenuState(!themesMenu.classList.contains('open'))
+  })
+
+  themeOptions.forEach((option) => {
+    const themeValue = option.dataset.theme
+    const activate = (event) => {
+      event.stopPropagation()
+      const normalizedTheme = applyTheme(themeValue)
+      setStoredTheme(normalizedTheme)
+      setMenuState(false)
+    }
+
+    option.addEventListener('click', activate)
+    option.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        activate(event)
+      }
     })
   })
 </script>
+

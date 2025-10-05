@@ -1,8 +1,8 @@
 ---
 const { m } = Astro.props;
 const LANGUAGES = [
-  { name: "English", code: "en", path: "/", flag: "🇺🇸" },
-  { name: "Español", code: "es", path: "/es/", flag: "🇪🇸" }
+  { name: "English", code: "en", path: "/", flag: "🇪🇸" },
+  { name: "Español", code: "es", path: "/es/", flag: "🇺🇸" }
 ];
 const currentLangFromPath = Astro.url.pathname.startsWith('/es') ? 'es' : 'en';
 const DEFAULT_FLAG = LANGUAGES.find((lang) => lang.code === currentLangFromPath)?.flag ?? LANGUAGES[0].flag;
@@ -31,7 +31,7 @@ const DEFAULT_LABEL = LANGUAGES.find((lang) => lang.code === currentLangFromPath
       {LANGUAGES.map((language) => (
         <li
           role="option"
-          tabIndex={0}
+          tabindex={0}
           class="langs-menu-option px-2 py-1.5 cursor-pointer rounded-sm hover:bg-neutral-400/40 dark:hover:bg-gray-500/50"
           data-lang={language.code}
           data-path={language.path}
@@ -71,53 +71,132 @@ const DEFAULT_LABEL = LANGUAGES.find((lang) => lang.code === currentLangFromPath
   }
 </style>
 
+
 <script is:inline>
+(() => {
   const langsMenu = document.getElementById('langs-menu');
   const langToggleBtn = document.getElementById('lang-toggle-btn');
   const langIcon = document.getElementById('lang-icon');
-  const langOptions = Array.from(document.querySelectorAll('.langs-menu-option'));
+  if (!langsMenu || !langToggleBtn || !langIcon) {
+    return;
+  }
 
-  const getLangFromPath = () => (window.location.pathname.startsWith('/es') ? 'es' : 'en');
-  const getStoredLang = () => localStorage.getItem('lang');
-  const getPathForLang = (lang) => langOptions.find((option) => option.dataset.lang === lang)?.dataset.path ?? '/';
-  const getFlagForLang = (lang) => langOptions.find((option) => option.dataset.lang === lang)?.dataset.flag ?? DEFAULT_FLAG;
+  const optionNodes = Array.from(langsMenu.querySelectorAll('.langs-menu-option'));
+  if (!optionNodes.length) {
+    return;
+  }
+
+  const normalizePath = (value) => {
+    if (!value) return '/';
+    try {
+      const url = new URL(value, window.location.origin);
+      value = url.pathname;
+    } catch (error) {
+      // Ignore and use raw value
+    }
+    const trimmed = value.replace(/\/+$/g, '');
+    return trimmed === '' ? '/' : trimmed;
+  };
+
+  const languages = optionNodes
+    .map((node, index) => {
+      const code = node.dataset.lang || `lang-${index}`;
+      const path = node.dataset.path || '/';
+      const flag = (node.dataset.flag || node.textContent || '').trim();
+      const name = (node.textContent || code).trim();
+      return { code, path, flag, name, node };
+    })
+    .filter((item) => Boolean(item.code));
+
+  if (!languages.length) {
+    return;
+  }
+
+  const fallbackFlag = (langIcon.textContent || '').trim() || languages[0].flag;
+
+  const findLanguage = (code) => languages.find((item) => item.code === code);
+  const getLangFromPath = () => {
+    const currentPath = normalizePath(window.location.pathname);
+    const match = languages.find((item) => normalizePath(item.path) === currentPath);
+    return match?.code || languages[0].code;
+  };
+
+  const getStoredLang = () => {
+    try {
+      return localStorage.getItem('lang');
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const setStoredLang = (code) => {
+    try {
+      localStorage.setItem('lang', code);
+    } catch (error) {
+      // Ignore storage errors (private mode, etc.)
+    }
+  };
 
   const setMenuState = (isOpen) => {
     langsMenu.classList.toggle('open', isOpen);
     langToggleBtn.setAttribute('aria-expanded', String(isOpen));
   };
 
-  const applyLangUi = (lang) => {
-    langIcon.textContent = getFlagForLang(lang);
-    const activeOption = langOptions.find((option) => option.dataset.lang === lang);
-    langOptions.forEach((option) => {
-      const isActive = option === activeOption;
-      option.setAttribute('aria-current', isActive ? 'true' : 'false');
+  let activeLang = languages[0].code;
+
+  const applyLangUi = (code) => {
+    const lang = findLanguage(code) || languages[0];
+    activeLang = lang.code;
+    langIcon.textContent = lang.flag || fallbackFlag;
+    langToggleBtn.setAttribute('aria-label', `${lang.name} (${lang.code.toUpperCase()})`);
+
+    languages.forEach((item) => {
+      const isActive = item.code === lang.code;
+      item.node.setAttribute('aria-current', isActive ? 'true' : 'false');
+      item.node.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      item.node.classList.toggle('font-semibold', isActive);
     });
-    if (activeOption) {
-      langToggleBtn.setAttribute('aria-label', `${activeOption.textContent.trim()} (${lang.toUpperCase()})`);
+  };
+
+  const navigateTo = (code) => {
+    const lang = findLanguage(code);
+    if (!lang) return;
+    const current = normalizePath(window.location.pathname);
+    const target = normalizePath(lang.path);
+    if (current !== target) {
+      window.location.href = lang.path;
     }
   };
 
-  const setLanguage = (lang, { redirect = false } = {}) => {
-    localStorage.setItem('lang', lang);
-    applyLangUi(lang);
+  const setLanguage = (code, { redirect = false } = {}) => {
+    const lang = findLanguage(code) || languages[0];
+    setStoredLang(lang.code);
+    applyLangUi(lang.code);
     if (redirect) {
-      const targetPath = getPathForLang(lang);
-      if (!window.location.pathname.startsWith(targetPath)) {
-        window.location.assign(targetPath);
-      }
+      navigateTo(lang.code);
     }
+  };
+
+  const getActiveLang = () => activeLang;
+
+  const getNextLang = (current) => {
+    const index = languages.findIndex((item) => item.code === current);
+    if (index === -1) return languages[0].code;
+    return languages[(index + 1) % languages.length].code;
   };
 
   const pathLang = getLangFromPath();
-  const storedLang = getStoredLang();
-  const initialLang = storedLang || pathLang;
+  const storedLang = findLanguage(getStoredLang());
+  const initialLang = storedLang?.code || pathLang;
 
-  setLanguage(initialLang, { redirect: Boolean(storedLang && storedLang !== pathLang) });
+  setLanguage(initialLang);
+
+  if (storedLang && storedLang.code !== pathLang) {
+    navigateTo(storedLang.code);
+  }
 
   if (!storedLang) {
-    localStorage.setItem('lang', initialLang);
+    setStoredLang(initialLang);
   }
 
   document.addEventListener('click', () => setMenuState(false));
@@ -129,24 +208,39 @@ const DEFAULT_LABEL = LANGUAGES.find((lang) => lang.code === currentLangFromPath
 
   langToggleBtn.addEventListener('click', (event) => {
     event.stopPropagation();
+    if (languages.length === 2 && !langsMenu.classList.contains('open')) {
+      const nextLang = getNextLang(getActiveLang());
+      if (nextLang !== getActiveLang()) {
+        setLanguage(nextLang, { redirect: true });
+        return;
+      }
+    }
     setMenuState(!langsMenu.classList.contains('open'));
   });
 
-  langOptions.forEach((option) => {
+  langToggleBtn.addEventListener('keydown', (event) => {
+    if (['Enter', ' ', 'ArrowDown'].includes(event.key)) {
+      event.preventDefault();
+      setMenuState(true);
+    }
+  });
+
+  languages.forEach((item) => {
     const activate = (event) => {
       event.stopPropagation();
-      const selectedLang = option.dataset.lang;
-      setLanguage(selectedLang, { redirect: true });
+      setLanguage(item.code, { redirect: true });
       setMenuState(false);
     };
 
-    option.addEventListener('click', activate);
-    option.addEventListener('keydown', (event) => {
+    item.node.addEventListener('click', activate);
+    item.node.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         activate(event);
       }
     });
   });
+})();
 </script>
+
 
