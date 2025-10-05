@@ -7,6 +7,7 @@ interface TranslationMessages {
   intro_3_2: string;
   date_saec_data: string;
   date_freelance: string;
+  date_big_formacion: string;
   title_saec_data: string;
   company_saec_data: string;
   description_saec_data: string;
@@ -54,6 +55,7 @@ interface TranslationMessages {
   descripcion_web: string;
   opositatcae_title: string;
   opositatcae_desc: string;
+  oposita_simulator: string;
   ecommerce: string;
   mytasks: string;
   flutter: string;

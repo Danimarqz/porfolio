@@ -1,118 +1,131 @@
 ---
 import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
+import GitHub from "./icons/GitHub.astro"
 import AWS from "./icons/AWS.astro"
-import PlayStore from "./icons/PlayStore.astro"
-import Apple from "./icons/Apple.astro"
+import Docker from "./icons/Docker.astro"
+import FastAPI from "./icons/FastAPI.astro"
+import AstroIcon from "./icons/Astro.astro"
+import Postgres from "./icons/Postgres.astro"
 import SASS from "./icons/SASS.astro"
 import Cloudflare from "./icons/Cloudflare.astro"
 const { m } = Astro.props
 const TAGS = {
-
   AWS: {
-    name: "AWS",
+    name: "AWS (EC2, S3, CloudFront)",
     class: "bg-black text-white",
-    icon: AWS
+    icon: AWS,
   },
-  SASS: {
-    name: "SASS",
-    class: "bg-[#bf4080] text-white",
-    icon: SASS
+  Docker: {
+    name: "Docker",
+    class: "bg-[#0f4c75] text-white",
+    icon: Docker,
+  },
+  FastAPI: {
+    name: "FastAPI",
+    class: "bg-[#088373] text-white",
+    icon: FastAPI,
+  },
+  AstroPreact: {
+    name: "Astro + Preact",
+    class: "bg-[#4338CA] text-white",
+    icon: AstroIcon,
+  },
+  Postgres: {
+    name: "PostgreSQL",
+    class: "bg-[#0B7285] text-white",
+    icon: Postgres,
   },
   Cloudflare: {
     name: "Cloudflare",
     class: "bg-black text-white",
-    icon: Cloudflare
+    icon: Cloudflare,
+  },
+  SASS: {
+    name: "SASS",
+    class: "bg-[#bf4080] text-white",
+    icon: SASS,
   }
 }
 const PROJECTS = [
   {
-    id:'opositatcae',
+    id: 'opositatcae',
     title: "OpositaTCAE",
     description: m.opositatcae_desc,
     image: "/projects/opositatcae.png",
     link: "https://opositatcae.com/",
-    tags: [TAGS.AWS, TAGS.Cloudflare]
+    github: "https://github.com/Danimarqz/inscripcion-moodle",
+    tags: [TAGS.AstroPreact, TAGS.FastAPI, TAGS.Docker, TAGS.AWS, TAGS.Postgres]
   },
   {
     id: 'turismovalencia',
     title: m.turismovalencia_title,
-    description:
-      m.turismovalencia_desc,
+    description: m.turismovalencia_desc,
     link: "https://turismovalencia.bigformacion.com",
-    android: "https://play.google.com/store/apps/details?id=com.turismovalencia.moodlemobile",
     image: "/projects/turismovalencia.webp",
-    tags: [TAGS.AWS, TAGS.SASS]
+    tags: [TAGS.AWS, TAGS.Cloudflare, TAGS.SASS]
   },
   {
     id: 'crou',
     title: m.crou_titulo,
-    description:
-      m.crou_desc,
+    description: m.crou_desc,
     link: "https://crou.bigformacion.com",
-    android: "https://play.google.com/store/apps/details?id=com.crou.mobile",
-    ios: "https://apps.apple.com/us/app/crou/id6463857303",
     image: "/projects/crou.webp",
-    tags: [TAGS.AWS, TAGS.SASS]
+    tags: [TAGS.AWS, TAGS.Cloudflare, TAGS.SASS]
   },
 ]
 ---
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ id, image, title, description, tags, link, android, ios }) => (
-    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-  <div class="w-full md:w-1/2">
-    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Imagen proyecto" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="eager" src={image} />
-    </div>
-  </div>
+    PROJECTS.map(({ id, image, title, description, tags, link, github }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img alt="Imagen proyecto" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="eager" src={image} />
+          </div>
+        </div>
 
-  <div class="w-full md:w-1/2 md:max-w-lg">
-    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100" data-i18n={`${id}_title`}>
-      {title}
-    </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
-          {tags && tags.map((tag) => (
-            <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-              >
-                <tag.icon class="size-4" />
-                {tag.name}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100" data-i18n={`${id}_title`}>
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2">
+            <ul class="flex flex-row mb-2 gap-x-2 gap-y-2 flex-wrap">
+              {tags && tags.map((tag) => (
+                <li>
+                  <span class={`flex items-center gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
-      <div class="mt-2 text-gray-700 dark:text-gray-400" data-i18n={`${id}_desc`}>{description}</div>
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
-          )}
-          {android && (
-            <LinkButton href={android}>
-              <PlayStore class="size-4" />
-              Play Store
-            </LinkButton>
-          )}
-          {ios && (
-            <LinkButton href={ios}>
-              <Apple class="size-4" />
-              App Store
-            </LinkButton>
-          )}
-        </footer>
-    </div>
-  </div>
-</article>
+            <div class="mt-2 text-gray-700 dark:text-gray-400" data-i18n={`${id}_desc`}>
+              {description}
+            </div>
+            <footer class="flex flex-wrap items-end justify-start mt-4 gap-x-4 gap-y-2">
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-5" />
+                  Code
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </div>
+      </article>
     ))
   }
 </div>
+
 
 
 

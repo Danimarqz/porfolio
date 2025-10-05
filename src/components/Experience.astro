@@ -4,25 +4,48 @@ const { m } = Astro.props
 const EXPERIENCIE = [
   {
     id: "saec_data",
-    date: "At the moment...",
-    title: m.title_SDE,
+    date: m.date_saec_data,
+    title: m.title_saec_data ?? m.title_SDE,
     company: m.company_saec_data,
     description: m.description_saec_data,
+    tech: [
+      "Odoo",
+      "Python",
+      "PostgreSQL",
+      "Docker",
+      "CI/CD",
+      "Kubernetes (exploring)",
+    ],
   },
   {
     id: "freelance",
-    date: "At the moment...",
-    title: m.title_SDE,
+    date: m.date_freelance,
+    title: m.title_freelance ?? m.title_SDE,
     company: m.company_freelance,
     description: m.description_freelance,
-    link: "https://consultoria.danimarqz.dev"
+    link: "https://consultoria.danimarqz.dev",
+    tech: [
+      "Astro + Preact",
+      "FastAPI",
+      "Docker",
+      "AWS (EC2, S3, CloudFront signed cookies)",
+      "PostgreSQL",
+      "Video streaming",
+    ],
   },
   {
     id: "big_formacion",
-    date: "08/2020 - 09/2024",
+    date: m.date_big_formacion ?? "08/2020 - 09/2024",
     title: m.title_big_formacion,
     company: m.company_big_formacion,
-    description: m.description_big_formacion
+    description: m.description_big_formacion,
+    tech: [
+      "Moodle",
+      "AWS",
+      "Docker",
+      "Video streaming",
+      "Data analytics",
+    ],
   },
 ]
 ---
@@ -30,9 +53,10 @@ const EXPERIENCIE = [
 <ol class="relative mt-16">
   {
     EXPERIENCIE.map((experiencie) => (
-      <li class="" >
+      <li>
         <ExperienceItem {...experiencie} m={m} />
       </li>
     ))
   }
 </ol>
+

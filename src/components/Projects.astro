@@ -1,173 +1,148 @@
 ---
 import GitHub from "./icons/GitHub.astro"
-import Tailwind from "./icons/Tailwind.astro"
 import LinkButton from "./LinkButton.astro"
-import Django from "./icons/Django.astro"
-import React from "./icons/React.astro"
-import TypeScript from "./icons/TypeScript.astro"
-import Cloudflare from "./icons/Cloudflare.astro"
+import FastAPI from "./icons/FastAPI.astro"
+import Docker from "./icons/Docker.astro"
+import AstroIcon from "./icons/Astro.astro"
 import AWS from "./icons/AWS.astro"
-import Flutter from "./icons/Flutter.astro"
-import php from "./icons/php.astro"
-import Python from "./icons/Python.astro"
-import SQL from "./icons/SQL.astro"
-
+import Postgres from "./icons/Postgres.astro"
+import PandasIcon from "./icons/Pandas.astro"
+import KubernetesIcon from "./icons/Kubernetes.astro"
+import Cloudflare from "./icons/Cloudflare.astro"
+import TypeScriptIcon from "./icons/TypeScript.astro"
 const {m} = Astro.props
 const TAGS = {
-  DJANGO: {
-    name: "Django",
-    class: "bg-black text-white",
-    icon: Django,
+  FastAPI: {
+    name: "FastAPI",
+    class: "bg-[#088373] text-white",
+    icon: FastAPI,
   },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
+  Docker: {
+    name: "Docker",
+    class: "bg-[#0f4c75] text-white",
+    icon: Docker,
   },
-  REACT: {
-    name: "React",
-    class: "bg-[#23272f] text-white",
-    icon: React,
-  },
-  TypeScript: {
-    name: "TypeScript",
-    class: "bg-black text-white",
-    icon: TypeScript
-  },
-  Cloudflare: {
-    name: "Cloudflare",
-    class: "bg-black text-white",
-    icon: Cloudflare
+  AstroPreact: {
+    name: "Astro + Preact",
+    class: "bg-[#4338CA] text-white",
+    icon: AstroIcon,
   },
   AWS: {
     name: "AWS",
     class: "bg-black text-white",
-    icon: AWS
+    icon: AWS,
   },
-  Flutter: {
-    name: "Flutter",
-    class: "bg-black text-white",
-    icon: Flutter
+  Postgres: {
+    name: "PostgreSQL",
+    class: "bg-[#0B7285] text-white",
+    icon: Postgres,
   },
-  PHP: {
-    name: "Php",
-    class: "bg-black text-white",
-    icon: php
+  Pandas: {
+    name: "Pandas",
+    class: "bg-[#6B21A8] text-white",
+    icon: PandasIcon,
   },
-  Python: {
-    name: "Python",
-    class: "bg-black text-white",
-    icon: Python
+  Kubernetes: {
+    name: "Kubernetes",
+    class: "bg-[#1D4ED8] text-white",
+    icon: KubernetesIcon,
   },
-  SQL: {
-    name: "",
+  Cloudflare: {
+    name: "Cloudflare",
     class: "bg-black text-white",
-    icon: SQL
+    icon: Cloudflare,
+  },
+  TypeScript: {
+    name: "TypeScript",
+    class: "bg-black text-white",
+    icon: TypeScriptIcon,
   }
 }
 const PROJECTS = [
   {
-    id: 'ecommerce',
-    title: "E-commerce",
-    description:
-      m.ecommerce,
-    image: "/projects/api.png",
-    github: "https://github.com/Danimarqz/animalhada_BE",
-    tags: [TAGS.TypeScript, TAGS.Cloudflare]
+    id: 'oposita_simulator',
+    title: "OpositaTCAE Simulator",
+    description: m.oposita_simulator,
+    image: "/projects/opositatcae.png",
+    github: "https://github.com/Danimarqz/inscripcion-moodle",
+    tags: [TAGS.AstroPreact, TAGS.FastAPI, TAGS.Docker, TAGS.Postgres, TAGS.AWS]
   },
   {
-    id: 'mytasks',
-    title: "MyTasks - A complete Tasks app",
-    description:
-      m.mytasks,
-    github: "https://github.com/Danimarqz/myTasks",
-    image: "/projects/mytasks.webp",
-    tags: [TAGS.DJANGO, TAGS.TAILWIND, TAGS.REACT],
-  },
-  {
-    id: 'flutter',
-    title: "Flutter Personal App",
-    description:
-      m.flutter,
-    github: "https://github.com/MyBroder-Me/MyPersonalApp",
-    image: "/projects/flutter.png",
-    tags: [TAGS.Flutter],
+    id: 'quiz_analysis',
+    title: "Quiz Analysis Engine",
+    description: m.quiz_analysis,
+    image: "/projects/quizanalysis.png",
+    github: "https://consultoria.danimarqz.dev/blog/",
+    tags: [TAGS.FastAPI, TAGS.Pandas, TAGS.Postgres, TAGS.Docker]
   },
   {
     id: 'quizreport',
     title: "Quizreport",
-    description: 
-      m.quizreport,
+    description: m.quizreport,
     image: "/projects/quizreport.png",
     github: "https://consultoria.danimarqz.dev/blog/",
-    tags: [TAGS.PHP]
-  },
-  {
-    id: 'quiz-analysis',
-    title: "Quiz-analysis",
-    description: 
-      m.quiz_analysis,
-    image: "/projects/quizanalysis.png",
-    github: "https://consultoria.danimarqz.dev/blog/",
-    tags: [TAGS.Python, TAGS.SQL]
+    tags: [TAGS.Pandas, TAGS.FastAPI, TAGS.Kubernetes]
   },
   {
     id: 'quiz_percentile',
     title: "Quiz Percentile",
-    description: 
-      m.quiz_percentile,
+    description: m.quiz_percentile,
     image: "/projects/quizpercentile.png",
     github: "https://consultoria.danimarqz.dev/blog/",
-    tags: [TAGS.PHP]
+    tags: [TAGS.Pandas, TAGS.Postgres]
+  },
+  {
+    id: 'ecommerce',
+    title: "E-commerce",
+    description: m.ecommerce,
+    image: "/projects/api.png",
+    github: "https://github.com/Danimarqz/animalhada_BE",
+    tags: [TAGS.TypeScript, TAGS.Cloudflare]
   }
-
 ]
 ---
 
 <div class="flex flex-col gap-y-16">
   {
     PROJECTS.map(({ id, image, title, description, tags, github }) => (
-    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-  <div class="w-full md:w-1/2">
-    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Imagen proyecto" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="eager" src={image} />
-    </div>
-  </div>
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img alt="Imagen proyecto" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="eager" src={image} />
+          </div>
+        </div>
 
-  <div class="w-full md:w-1/2 md:max-w-lg">
-    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-      {title}
-    </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
-          {tags && tags.map((tag) => (
-            <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-              >
-                <tag.icon class="size-4" />
-                {tag.name}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2">
+            <ul class="flex flex-row mb-2 gap-x-2 gap-y-2 flex-wrap">
+              {tags && tags.map((tag) => (
+                <li>
+                  <span class={`flex items-center gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
-      <div class="mt-2 text-gray-700 dark:text-gray-400" data-i18n={`${id}`}>{description}</div>
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
-          {github && (
-            <LinkButton href={github}>
-              <GitHub class="size-6" />
-              Code
-              
-            </LinkButton>
-          )}
-        </footer>
-    </div>
-  </div>
-</article>
+            <div class="mt-2 text-gray-700 dark:text-gray-400" data-i18n={`${id}`}>
+              {description}
+            </div>
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </div>
+      </article>
     ))
   }
 </div>
-
-
 

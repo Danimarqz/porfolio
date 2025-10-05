@@ -8,10 +8,11 @@ interface Props {
   description: string
   link?: string
   date: string
+  tech?: string[]
   m: { [key: string]: string }
 }
 
-const { id, title, company, description, link, date, m } = Astro.props
+const { id, title, company, description, link, date, tech, m } = Astro.props
 ---
 
 <div
@@ -28,10 +29,19 @@ const { id, title, company, description, link, date, m } = Astro.props
       <time class="p-0 m-0 text-sm text-gray-600/80 dark:text-white/80" data-i18n={`date_${id}`}>{date}</time>
     </div>
   </div>
-  <div class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3">
+  <div class="relative flex flex-col gap-3 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3">
     <span data-i18n={`description_${id}`}>
       {description}
     </span>
+    {tech && tech.length > 0 && (
+      <ul class="flex flex-wrap gap-2">
+        {tech.map((item) => (
+          <li class="px-2 py-1 text-xs font-medium text-blue-900 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-900/30">
+            {item}
+          </li>
+        ))}
+      </ul>
+    )}
     {
       link && (
         <LinkInline href={link}>
@@ -56,3 +66,4 @@ const { id, title, company, description, link, date, m } = Astro.props
     }
   </div>
 </div>
+
