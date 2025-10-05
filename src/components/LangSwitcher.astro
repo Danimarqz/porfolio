@@ -1,19 +1,25 @@
 ---
 const { m } = Astro.props;
 const LANGUAGES = [
-  { name: "English", code: "en", path: "/" },
-  { name: "Español", code: "es", path: "/es/" }
+  { name: "English", code: "en", path: "/", flag: "🇺🇸" },
+  { name: "Español", code: "es", path: "/es/", flag: "🇪🇸" }
 ];
+const currentLangFromPath = Astro.url.pathname.startsWith('/es') ? 'es' : 'en';
+const DEFAULT_FLAG = LANGUAGES.find((lang) => lang.code === currentLangFromPath)?.flag ?? LANGUAGES[0].flag;
+const DEFAULT_LABEL = LANGUAGES.find((lang) => lang.code === currentLangFromPath)?.name ?? LANGUAGES[0].name;
 ---
 <div class="relative ml-1 mr-1">
   <button
     id="lang-toggle-btn"
     class="appearance-none border-none flex hover:scale-125 transition"
     type="button"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-label={`${DEFAULT_LABEL} (${currentLangFromPath.toUpperCase()})`}
   >
     <span class="sr-only">{m.elige_idioma}</span>
     <span id="lang-icon" class="size-5 transition-all">
-      {m.current_language}
+      {DEFAULT_FLAG}
     </span>
   </button>
 
@@ -21,12 +27,15 @@ const LANGUAGES = [
     id="langs-menu"
     class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
   >
-    <ul>
+    <ul role="listbox" aria-label={m.elige_idioma}>
       {LANGUAGES.map((language) => (
         <li
-          class="langs-menu-option px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
+          role="option"
+          tabIndex={0}
+          class="langs-menu-option px-2 py-1.5 cursor-pointer rounded-sm hover:bg-neutral-400/40 dark:hover:bg-gray-500/50"
           data-lang={language.code}
           data-path={language.path}
+          data-flag={language.flag}
         >
           {language.name}
         </li>
@@ -39,6 +48,15 @@ const LANGUAGES = [
   #langs-menu.open {
     display: inline;
     animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  .langs-menu-option[aria-current="true"] {
+    background: rgba(156, 163, 175, 0.25);
+    font-weight: 600;
+  }
+
+  :where(.dark) .langs-menu-option[aria-current="true"] {
+    background: rgba(107, 114, 128, 0.35);
   }
 
   @keyframes scale-up-center {
@@ -54,35 +72,81 @@ const LANGUAGES = [
 </style>
 
 <script is:inline>
-  const langsMenu = document.getElementById("langs-menu");
-  const langToggleBtn = document.getElementById("lang-toggle-btn");
-  const langIcon = document.getElementById("lang-icon");
+  const langsMenu = document.getElementById('langs-menu');
+  const langToggleBtn = document.getElementById('lang-toggle-btn');
+  const langIcon = document.getElementById('lang-icon');
+  const langOptions = Array.from(document.querySelectorAll('.langs-menu-option'));
 
-  const getLangPreference = () => {
-    return localStorage.getItem("lang") ?? (window.location.pathname.startsWith("/es") ? "es" : "en");
+  const getLangFromPath = () => (window.location.pathname.startsWith('/es') ? 'es' : 'en');
+  const getStoredLang = () => localStorage.getItem('lang');
+  const getPathForLang = (lang) => langOptions.find((option) => option.dataset.lang === lang)?.dataset.path ?? '/';
+  const getFlagForLang = (lang) => langOptions.find((option) => option.dataset.lang === lang)?.dataset.flag ?? DEFAULT_FLAG;
+
+  const setMenuState = (isOpen) => {
+    langsMenu.classList.toggle('open', isOpen);
+    langToggleBtn.setAttribute('aria-expanded', String(isOpen));
   };
 
-  const updateLang = () => {
-    const langPreference = getLangPreference();
-    langIcon.innerText = langPreference === "es" ? "🇪🇸" : "🇺🇸";
+  const applyLangUi = (lang) => {
+    langIcon.textContent = getFlagForLang(lang);
+    const activeOption = langOptions.find((option) => option.dataset.lang === lang);
+    langOptions.forEach((option) => {
+      const isActive = option === activeOption;
+      option.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+    if (activeOption) {
+      langToggleBtn.setAttribute('aria-label', `${activeOption.textContent.trim()} (${lang.toUpperCase()})`);
+    }
   };
 
-  updateLang();
+  const setLanguage = (lang, { redirect = false } = {}) => {
+    localStorage.setItem('lang', lang);
+    applyLangUi(lang);
+    if (redirect) {
+      const targetPath = getPathForLang(lang);
+      if (!window.location.pathname.startsWith(targetPath)) {
+        window.location.assign(targetPath);
+      }
+    }
+  };
 
-  document.addEventListener("click", () => langsMenu.classList.remove("open"));
+  const pathLang = getLangFromPath();
+  const storedLang = getStoredLang();
+  const initialLang = storedLang || pathLang;
 
-  langToggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    langsMenu.classList.toggle("open");
+  setLanguage(initialLang, { redirect: Boolean(storedLang && storedLang !== pathLang) });
+
+  if (!storedLang) {
+    localStorage.setItem('lang', initialLang);
+  }
+
+  document.addEventListener('click', () => setMenuState(false));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setMenuState(false);
+    }
   });
 
-  document.querySelectorAll(".langs-menu-option").forEach((element) => {
-    element.addEventListener("click", (e) => {
-      const selectedLang = e.target.getAttribute("data-lang");
-      const path = e.target.getAttribute("data-path");
-      localStorage.setItem("lang", selectedLang);
-      updateLang();
-      window.location.pathname = path;
+  langToggleBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    setMenuState(!langsMenu.classList.contains('open'));
+  });
+
+  langOptions.forEach((option) => {
+    const activate = (event) => {
+      event.stopPropagation();
+      const selectedLang = option.dataset.lang;
+      setLanguage(selectedLang, { redirect: true });
+      setMenuState(false);
+    };
+
+    option.addEventListener('click', activate);
+    option.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        activate(event);
+      }
     });
   });
 </script>
+
