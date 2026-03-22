@@ -5,6 +5,11 @@ interface TranslationMessages {
   intro_3: string;
   intro_3_1: string;
   intro_3_2: string;
+  date_full_and_fast: string;
+  title_full_and_fast: string;
+  company_full_and_fast: string;
+  description_full_and_fast: string;
+  more_info_full_and_fast: string;
   date_saec_data: string;
   date_freelance: string;
   date_big_formacion: string;

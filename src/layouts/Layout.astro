@@ -1,14 +1,15 @@
 ---
 import "@fontsource-variable/onest";
+import "../styles/global.css";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
   description: string;
-  m: object;
+  m: Record<string, string>;
 }
 
 const { description, title, m } = Astro.props;
@@ -23,7 +24,7 @@ const { description, title, m } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
+    <ClientRouter />
     <SpeedInsights />
     <meta name="google-site-verification" content="0k8eSr-iCeDRB4UKE23TPTStSBG8kC1xunOyhrJO0G8" />
   </head>

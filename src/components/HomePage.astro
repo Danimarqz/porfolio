@@ -1,0 +1,60 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import AboutMe from "@/components/AboutMe.astro"
+import Briefcase from "@/components/icons/Briefcase.astro"
+import CodeIcon from "@/components/icons/Code.astro"
+import Experience from "@/components/Experience.astro"
+import ProfileCheck from "@/components/icons/ProfileCheck.astro"
+import Projects from "@/components/Projects.astro"
+import ProjectsWork from "@/components/ProjectsWork.astro"
+import SectionContainer from "@/components/SectionContainer.astro"
+import Hero from "@/components/Hero.astro"
+
+interface Props {
+  messages: Record<string, string>
+}
+
+const { messages } = Astro.props
+---
+
+<Layout title={messages.titulo_web} description={messages.descripcion_web} m={messages}>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+      <Hero m={messages} />
+    </SectionContainer>
+
+    <div class="space-y-24">
+      <SectionContainer id={messages.experiencia_label}>
+        <div class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white">
+          <Briefcase class="size-8" />
+          <h2>{messages.experiencia_laboral}</h2>
+        </div>
+        <Experience m={messages} />
+      </SectionContainer>
+
+      <SectionContainer id={messages.trabajos}>
+        <div class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white">
+          <CodeIcon class="size-7" />
+          <h2>{messages.trabajos}</h2>
+        </div>
+        <ProjectsWork m={messages} />
+      </SectionContainer>
+
+      <SectionContainer id={messages.proyectos_label}>
+        <div class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white">
+          <CodeIcon class="size-7" />
+          <h2>{messages.proyectos_personales}</h2>
+        </div>
+        <Projects m={messages} />
+      </SectionContainer>
+
+      <SectionContainer id={messages.about_me_label}>
+        <div class="flex items-center mb-6 text-3xl font-semibold gap-x-8 text-black/80 dark:text-white">
+          <ProfileCheck class="size-8" />
+          <h2>{messages.about_me}</h2>
+        </div>
+        <AboutMe m={messages} />
+      </SectionContainer>
+    </div>
+  </main>
+</Layout>
