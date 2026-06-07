@@ -10,15 +10,11 @@ export function getExperience(m: TranslationMessages) {
       description: m.description_full_and_fast,
       tech: [
         "Python",
+        "NumPy",
         "AWS Lambda",
+        "AWS SAM",
         "DynamoDB",
         "S3",
-        "CloudFormation",
-        "Cognito",
-        "IAM",
-        "ECR",
-        "MQTT",
-        "ETL Pipelines",
       ],
     },
     {
@@ -33,6 +29,7 @@ export function getExperience(m: TranslationMessages) {
         "PostgreSQL",
         "Docker",
         "CI/CD",
+        "Gitea",
       ],
     },
     {
@@ -43,12 +40,13 @@ export function getExperience(m: TranslationMessages) {
       description: m.description_freelance,
       link: "https://consultoria.danimarqz.dev",
       tech: [
+        "Go",
         "Astro + Preact",
-        "FastAPI",
         "Docker",
-        "AWS (EC2, S3, CloudFront signed cookies)",
+        "AWS (EC2, S3, CloudFront)",
         "PostgreSQL",
-        "Video streaming",
+        "Redis",
+        "AWS Bedrock",
       ],
     },
     {

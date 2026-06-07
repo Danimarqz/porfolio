@@ -61,7 +61,6 @@ interface TranslationMessages {
   opositatcae_title: string;
   opositatcae_desc: string;
   oposita_simulator: string;
-  ecommerce: string;
   mytasks: string;
   flutter: string;
   more_info: string;

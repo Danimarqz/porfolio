@@ -9,7 +9,7 @@ export function getPersonalProjects(m: TranslationMessages) {
       description: m.oposita_simulator,
       image: "/projects/opositatcae.png",
       github: "https://github.com/Danimarqz/inscripcion-moodle",
-      tags: [TAGS.AstroPreact, TAGS.FastAPI, TAGS.Docker, TAGS.Postgres, TAGS.AWS],
+      tags: [TAGS.Go, TAGS.AstroPreact, TAGS.Docker, TAGS.Postgres, TAGS.AWS, TAGS.Redis],
     },
     {
       id: "quiz_analysis",
@@ -35,14 +35,6 @@ export function getPersonalProjects(m: TranslationMessages) {
       github: "https://consultoria.danimarqz.dev/blog/",
       tags: [TAGS.Pandas, TAGS.Postgres],
     },
-    {
-      id: "ecommerce",
-      title: "E-commerce",
-      description: m.ecommerce,
-      image: "/projects/api.png",
-      github: "https://github.com/Danimarqz/animalhada_BE",
-      tags: [TAGS.TypeScript, TAGS.Cloudflare],
-    },
   ]
 }
 
@@ -55,7 +47,7 @@ export function getWorkProjects(m: TranslationMessages) {
       image: "/projects/opositatcae.png",
       link: "https://opositatcae.com/",
       github: "https://github.com/Danimarqz/inscripcion-moodle",
-      tags: [TAGS.AstroPreact, TAGS.FastAPI, TAGS.Docker, TAGS.AWSFull, TAGS.Postgres],
+      tags: [TAGS.Go, TAGS.AstroPreact, TAGS.Docker, TAGS.AWSFull, TAGS.Postgres, TAGS.Redis, TAGS.Bedrock],
     },
     {
       id: "turismovalencia",

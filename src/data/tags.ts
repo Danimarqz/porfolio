@@ -8,6 +8,9 @@ import KubernetesIcon from "@/components/icons/Kubernetes.astro"
 import Cloudflare from "@/components/icons/Cloudflare.astro"
 import TypeScriptIcon from "@/components/icons/TypeScript.astro"
 import SASS from "@/components/icons/SASS.astro"
+import Go from "@/components/icons/Go.astro"
+import Redis from "@/components/icons/Redis.astro"
+import Bedrock from "@/components/icons/Bedrock.astro"
 
 export const TAGS = {
   FastAPI: {
@@ -64,5 +67,20 @@ export const TAGS = {
     name: "SASS",
     class: "bg-[#bf4080] text-white",
     icon: SASS,
+  },
+  Go: {
+    name: "Go",
+    class: "bg-[#00ADD8] text-white",
+    icon: Go,
+  },
+  Redis: {
+    name: "Redis",
+    class: "bg-[#DC382C] text-white",
+    icon: Redis,
+  },
+  Bedrock: {
+    name: "AWS Bedrock",
+    class: "bg-black text-white",
+    icon: Bedrock,
   },
 } as const
