@@ -6,14 +6,17 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "npm run build && wrangler dev",
+    "astro": "astro",
+    "generate-types": "wrangler types",
+    "deploy": "npm run build && wrangler deploy"
   },
   "engines": {
     "node": ">=22.12.0"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
+    "@astrojs/cloudflare": "^13.6.1",
     "@astrojs/vercel": "^10.0.2",
     "@fontsource-variable/onest": "5.0.2",
     "@tailwindcss/vite": "^4.1.0",
@@ -26,5 +29,8 @@
   },
   "overrides": {
     "vite": "7.3.5"
+  },
+  "devDependencies": {
+    "wrangler": "^4.98.0"
   }
 }
