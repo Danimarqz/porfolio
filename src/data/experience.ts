@@ -1,67 +1,41 @@
 import type TranslationMessages from "@/types.d.ts"
 
+// Timeline accent per milestone. Order: most recent first.
+export type Accent = "cyan" | "green" | "dim"
+
 export function getExperience(m: TranslationMessages) {
   return [
     {
       id: "full_and_fast",
-      date: m.date_full_and_fast,
-      title: m.title_full_and_fast ?? m.title_SDE,
-      company: m.company_full_and_fast,
-      description: m.description_full_and_fast,
-      tech: [
-        "Python",
-        "NumPy",
-        "AWS Lambda",
-        "AWS SAM",
-        "DynamoDB",
-        "S3",
-      ],
+      accent: "cyan" as Accent,
+      date: m.exp_ff_date,
+      role: m.exp_ff_role,
+      company: m.exp_ff_company,
+      description: m.exp_ff_desc,
     },
     {
-      id: "saec_data",
-      date: m.date_saec_data,
-      title: m.title_saec_data ?? m.title_SDE,
-      company: m.company_saec_data,
-      description: m.description_saec_data,
-      tech: [
-        "Odoo",
-        "Python",
-        "PostgreSQL",
-        "Docker",
-        "CI/CD",
-        "Gitea",
-      ],
+      id: "opositatcae",
+      accent: "green" as Accent,
+      date: m.exp_op_date,
+      role: m.exp_op_role,
+      company: m.exp_op_company,
+      description: m.exp_op_desc,
     },
     {
-      id: "freelance",
-      date: m.date_freelance,
-      title: m.title_freelance ?? m.title_SDE,
-      company: m.company_freelance,
-      description: m.description_freelance,
-      link: "https://consultoria.danimarqz.dev",
-      tech: [
-        "Go",
-        "Astro + Preact",
-        "Docker",
-        "AWS (EC2, S3, CloudFront)",
-        "PostgreSQL",
-        "Redis",
-        "AWS Bedrock",
-      ],
+      id: "saecdata",
+      accent: "dim" as Accent,
+      date: m.exp_sd_date,
+      role: m.exp_sd_role,
+      company: m.exp_sd_company,
+      description: m.exp_sd_desc,
     },
     {
       id: "big_formacion",
-      date: m.date_big_formacion ?? "08/2020 - 09/2024",
-      title: m.title_big_formacion,
-      company: m.company_big_formacion,
-      description: m.description_big_formacion,
-      tech: [
-        "Moodle",
-        "AWS",
-        "Docker",
-        "Video streaming",
-        "Data analytics",
-      ],
+      accent: "dim" as Accent,
+      date: m.exp_big_date,
+      role: m.exp_big_role,
+      company: m.exp_big_company,
+      description: m.exp_big_desc,
     },
   ]
 }

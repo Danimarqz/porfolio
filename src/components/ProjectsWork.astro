@@ -1,9 +1,0 @@
----
-import ProjectList from "./ProjectList.astro"
-import { getWorkProjects } from "@/data/projects"
-
-const { m } = Astro.props
-const projects = getWorkProjects(m)
----
-
-<ProjectList projects={projects} i18nPrefix="work" />

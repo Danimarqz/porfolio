@@ -1,69 +1,56 @@
-import { TAGS } from "./tags"
 import type TranslationMessages from "@/types.d.ts"
 
-export function getPersonalProjects(m: TranslationMessages) {
+// Projects render as cards. `icon` maps to an inline SVG in ProjectCard.astro.
+// `stack` is plain mono text — no per-tag brand icons here, the stack graph covers that.
+export type ProjectStatus = "production" | "selfhosted"
+export type ProjectIcon = "bolt" | "robot" | "wallet" | "server" | "code"
+
+export function getProjects(m: TranslationMessages) {
   return [
+    {
+      id: "motor_v27",
+      icon: "bolt" as ProjectIcon,
+      status: "production" as ProjectStatus,
+      title: m.proj_motor_title,
+      description: m.proj_motor_desc,
+      stack: ["Python", "Lambda", "NumPy", "SAM"],
+      href: undefined as string | undefined,
+    },
+    {
+      id: "agents_oposita",
+      icon: "robot" as ProjectIcon,
+      status: "production" as ProjectStatus,
+      title: m.proj_agents_title,
+      description: m.proj_agents_desc,
+      stack: ["Bedrock", "Textract", "Graviton", "SAM"],
+      href: "https://opositatcae.com/",
+    },
+    {
+      id: "finance_tracker",
+      icon: "wallet" as ProjectIcon,
+      status: "production" as ProjectStatus,
+      title: m.proj_finance_title,
+      description: m.proj_finance_desc,
+      stack: ["Go", "DynamoDB", "Cloudflare"],
+      href: undefined,
+    },
     {
       id: "oposita_simulator",
-      title: "OpositaTCAE Simulator",
-      description: m.oposita_simulator,
-      image: "/projects/opositatcae.png",
-      github: "https://github.com/Danimarqz/inscripcion-moodle",
-      tags: [TAGS.Go, TAGS.AstroPreact, TAGS.Docker, TAGS.Postgres, TAGS.AWS, TAGS.Redis],
+      icon: "code" as ProjectIcon,
+      status: "production" as ProjectStatus,
+      title: m.proj_sim_title,
+      description: m.proj_sim_desc,
+      stack: ["Go", "Astro", "PostgreSQL", "Redis"],
+      href: "https://github.com/Danimarqz/inscripcion-moodle",
     },
     {
-      id: "quiz_analysis",
-      title: "Quiz Analysis Engine",
-      description: m.quiz_analysis,
-      image: "/projects/quizanalysis.png",
-      github: "https://consultoria.danimarqz.dev/blog/",
-      tags: [TAGS.FastAPI, TAGS.Pandas, TAGS.Postgres, TAGS.Docker],
-    },
-    {
-      id: "quizreport",
-      title: "Quizreport",
-      description: m.quizreport,
-      image: "/projects/quizreport.png",
-      github: "https://consultoria.danimarqz.dev/blog/",
-      tags: [TAGS.Pandas, TAGS.FastAPI, TAGS.Kubernetes],
-    },
-    {
-      id: "quiz_percentile",
-      title: "Quiz Percentile",
-      description: m.quiz_percentile,
-      image: "/projects/quizpercentile.png",
-      github: "https://consultoria.danimarqz.dev/blog/",
-      tags: [TAGS.Pandas, TAGS.Postgres],
-    },
-  ]
-}
-
-export function getWorkProjects(m: TranslationMessages) {
-  return [
-    {
-      id: "opositatcae",
-      title: "OpositaTCAE",
-      description: m.opositatcae_desc,
-      image: "/projects/opositatcae.png",
-      link: "https://opositatcae.com/",
-      github: "https://github.com/Danimarqz/inscripcion-moodle",
-      tags: [TAGS.Go, TAGS.AstroPreact, TAGS.Docker, TAGS.AWSFull, TAGS.Postgres, TAGS.Redis, TAGS.Bedrock],
-    },
-    {
-      id: "turismovalencia",
-      title: m.turismovalencia_title,
-      description: m.turismovalencia_desc,
-      link: "https://turismovalencia.bigformacion.com",
-      image: "/projects/turismovalencia.webp",
-      tags: [TAGS.AWSFull, TAGS.Cloudflare, TAGS.SASS],
-    },
-    {
-      id: "crou",
-      title: m.crou_titulo,
-      description: m.crou_desc,
-      link: "https://crou.bigformacion.com",
-      image: "/projects/crou.webp",
-      tags: [TAGS.AWSFull, TAGS.Cloudflare, TAGS.SASS],
+      id: "daniserver",
+      icon: "server" as ProjectIcon,
+      status: "selfhosted" as ProjectStatus,
+      title: m.proj_server_title,
+      description: m.proj_server_desc,
+      stack: ["Docker", "Ollama", "Qwen3"],
+      href: undefined,
     },
   ]
 }
